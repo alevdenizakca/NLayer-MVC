@@ -1,5 +1,4 @@
 ﻿using AutoMapper;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using NLayer.API.Filters;
 using NLayer.Core.DTOs;
@@ -33,7 +32,7 @@ namespace NLayer.API.Controllers
             var productDtos = _mapper.Map<List<ProductDto>>(products.ToList());
             //return Ok(CustomResponseDto<List<ProductDto>>.Success(200, productDtos));
 
-            return CreateActionResult(CustomResponseDto<List<ProductDto>>.Success(200,productDtos));
+            return CreateActionResult(CustomResponseDto<List<ProductDto>>.Success(200, productDtos));
         }
 
         [ServiceFilter(typeof(NotFoundFilter<Product>))]
@@ -42,7 +41,7 @@ namespace NLayer.API.Controllers
         {
             var product = await _service.GetByIdAsync(id);
             var productDto = _mapper.Map<ProductDto>(product);
-            return CreateActionResult(CustomResponseDto<ProductDto>.Success(200,productDto));
+            return CreateActionResult(CustomResponseDto<ProductDto>.Success(200, productDto));
         }
 
         [HttpPost]
